@@ -11,6 +11,20 @@ package edu.cerditos.model;
  */
 public class Lobo extends Animal{
     
+    private Casa casa = new Casa();
+
+    public Lobo() {
+    }
+    
+    public Lobo(String color, String tamanio, String vestimenta, String personalidad, String nombre) {
+        super(color, tamanio, vestimenta, personalidad, nombre);
+    }
+    
+    public Lobo(String color, String tamanio, String vestimenta, String personalidad, String nombre, Casa casa) {
+        super(color, tamanio, vestimenta, personalidad, nombre);
+        this.casa = casa;
+    }
+    
     public String soplar(Casa casaIn) {
         return this.getNombre() + "  Soploooooooooooo y soploooooo " + casaIn.getMaterial();
     }
@@ -23,7 +37,13 @@ public class Lobo extends Animal{
         return this.getNombre() + "  empuja la puerta de la casa " + casaIn.getMaterial();
     }
 
-    
+    public Casa getCasa() {
+        return casa;
+    }
+
+    public void setCasa(Casa casa) {
+        this.casa = casa;
+    }
     /*
     public Lobo() {
     }

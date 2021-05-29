@@ -7,6 +7,7 @@ package edu.cerditos.controller;
 
 import edu.cerditos.model.Casa;
 import edu.cerditos.model.Cerdo;
+import edu.cerditos.model.Lobo;
 import java.io.Serializable;
 import java.util.ArrayList;
 import javax.faces.bean.ManagedBean;
@@ -25,9 +26,11 @@ public class CuentoView implements Serializable{
 
     private Cerdo registroCerdo = new Cerdo();
     private ArrayList<Cerdo> listaCerdos = new ArrayList<>();
+    
+    private Lobo registroLobo = new Lobo();
+    private ArrayList<Lobo> listaLobos = new ArrayList<>();
 
     private String material ="";
-    
     
     
     /**
@@ -51,7 +54,6 @@ public class CuentoView implements Serializable{
             break;
             }
         }
-               
         
         listaCerdos.add(new Cerdo(registroCerdo.getColor(), 
                                    registroCerdo.getTamanio(), 
@@ -63,23 +65,39 @@ public class CuentoView implements Serializable{
         registroCerdo = new Cerdo();
     }
 
+    public void registrarLobo() {
+        
+        Casa casaSeleccionada = new Casa();
+        
+        for (Casa objCasa : listaCasas) {
+            if(objCasa.getMaterial().endsWith(material)){
+            casaSeleccionada = objCasa;
+            break;
+            }
+        }
+        
+        listaLobos.add(new Lobo(registroLobo.getColor(), 
+                                   registroLobo.getTamanio(), 
+                                   registroLobo.getVestimenta(),
+                                   registroLobo.getPersonalidad(), 
+                                   registroLobo.getNombre(), 
+                                   casaSeleccionada));
+        registroCerdo = new Cerdo();
+    }
 
     public void cantar(Cerdo cCanta){
         System.out.println(cCanta.cantar("Vallenato"));
-        
     }
-    
     
     public void bailar(Cerdo cBaila){
         System.out.println(cBaila.bailar("Champeta"));
     }
-    
-    
-    
-    
+ 
     public void tocar(Cerdo cToca){
         System.out.println(cToca.tocarInstrumento());
     }
+    
+    
     
     
     
@@ -113,6 +131,22 @@ public class CuentoView implements Serializable{
 
     public void setListaCerdos(ArrayList<Cerdo> listaCerdos) {
         this.listaCerdos = listaCerdos;
+    }
+
+    public Lobo getRegistroLobo() {
+        return registroLobo;
+    }
+
+    public void setRegistroLobo(Lobo registroLobo) {
+        this.registroLobo = registroLobo;
+    }
+
+    public ArrayList<Lobo> getListaLobos() {
+        return listaLobos;
+    }
+
+    public void setListaLobos(ArrayList<Lobo> listaLobos) {
+        this.listaLobos = listaLobos;
     }
 
     public String getMaterial() {

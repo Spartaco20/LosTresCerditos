@@ -26,7 +26,6 @@
 
                     <hr/>
 
-
                     <c:forEach items="#{cuentoView.listaCasas}" var="casaIt">
 
                         <div class="card" style="width:90px;">
@@ -35,22 +34,18 @@
                                 <p class="card-text" style="font-size: 9px">Color : #{casaIt.color}</p>
                                 <p class="card-text"  style="font-size: 6px" >Tamaño : #{casaIt.tamanio}</p>
                                 <p class="card-text"  style="font-size: 6px">Material : #{casaIt.material}</p>
-
                             </div>
                         </div>
 
-
                     </c:forEach>    
-
-
-
-
-
                 </div>
+
+
                 <div class="col-sm">
                     <button type="button" class="btn btn-success"  data-toggle="modal" data-target="#cerdosModal">
                         Cerdos <span class="badge badge-light">#{cuentoView.listaCerdos.size()}</span>
                     </button>
+
                     <hr/>
 
                     <h:form>
@@ -67,12 +62,13 @@
                                             <p class="card-text">Tiene una vestimenta #{cerdoIt.vestimenta} con un color #{cerdoIt.color} toca un instrumento #{cerdoIt.instrumento}</p>
                                         </div>
 
-                                        <h:commandButton class="btn btn-outline-primary" action="#{cuentoView.cantar(cerdoIt)}" value="Canta"/>
+                                        <h:commandButton class="btn btn-outline-primary" action="#{cuentoView.cantar(cerdoIt)}" value="Cantar"/>
 
                                         <h:commandButton class="btn btn-outline-secondary"  action="#{cuentoView.bailar(cerdoIt)}" value="Bailar"/>
+
                                         <h:commandButton class="btn btn-outline-success" value="Construir" />
 
-                                        <h:commandButton class="btn btn-outline-warning" action="#{cuentoView.tocar(cerdoIt)}" value="Toca"/>
+                                        <h:commandButton class="btn btn-outline-warning" action="#{cuentoView.tocar(cerdoIt)}" value="Tocar"/>
 
 
                                         <div class="card" style="width:170px;">
@@ -88,24 +84,59 @@
                                 </div>
                             </div>
 
+                        </c:forEach>
+                    </h:form>
+                </div>
+
+
+                <div class="col-sm">
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#loboModal">
+                        Lobo <span class="badge badge-light">#{cuentoView.listaLobos.size()}</span>
+                    </button>
+
+                    <hr/>
+
+                    <h:form>
+                        <c:forEach items="#{cuentoView.listaLobos}" var="loboIt">
+
+                            <div class="card mb-3" style="max-width: 540px;">
+                                <div class="row no-gutters">
+                                    <div class="col-md-4">
+                                        <img src="imagenes/lobo.png" class="card-img" alt="..."/>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="card-title">#{loboIt.nombre}</h5>
+                                            <p class="card-text">Es de color #{loboIt.color} con una personalidad #{loboIt.personalidad}</p>
+                                        </div>
+
+                                        <h:commandButton class="btn btn-outline-primary" value="Soplar"/>
+
+                                        <h:commandButton class="btn btn-outline-secondary" value="Engañar"/>
+
+                                        <h:commandButton class="btn btn-outline-success" value="Empujar"/>
+
+                                        <div class="card" style="width:170px;">
+                                            <img src="imagenes/casa.png" class="card-img-top" alt="..."/>
+                                            <div class="card-body">
+                                                <p class="card-text" style="font-size: 9px">Color : #{loboIt.casa.color} </p>
+                                                <p class="card-text"  style="font-size: 9px" >Tamaño : #{loboIt.casa.tamanio} </p>
+                                                <p class="card-text"  style="font-size: 9px">Material : #{loboIt.casa.material} </p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
                         </c:forEach>
                     </h:form>
 
-
-
-                </div>
-                <div class="col-sm">
-                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#loboModal">
-                        Lobo <span class="badge badge-light">0</span>
-                    </button>
                 </div>
             </div>
 
 
         </div>
-
-
 
 
 
@@ -142,12 +173,11 @@
                                     <h:inputText  value="#{cuentoView.registroCasa.material}" requiredMessage="Ingrese un material de casa" required="true" class="form-control" id="inputMaterial"/>
                                 </div>
                             </div>
-
-
                         </div>
+
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                            <h:commandButton    action="#{cuentoView.guardarCasaNueva()}" class="btn btn-primary" value="Crear --> Casa"  />
+                            <h:commandButton action="#{cuentoView.guardarCasaNueva()}" class="btn btn-primary" value="Crear --> Casa"  />
                         </div>
                     </h:form>
                 </div>
@@ -220,15 +250,12 @@
                                                        itemValue="#{casaLi.material}"
                                                        itemLabel="#{casaLi.material}">                                            
                                         </f:selectItems>
-
                                     </h:selectOneMenu>
-
-
                                 </div>
                             </div>
 
-
                         </div>
+                        
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                             <h:commandButton action="#{cuentoView.registrarNuevoCerdo()}" class="btn btn-primary" value="Crear --> Casa" ></h:commandButton>
@@ -249,13 +276,50 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
-                        ...
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-primary">Crear --> Lobo</button>
-                    </div>
+                    <h:form>
+                        <div class="modal-body">
+                            
+                            <div class="form-group row">
+                                <label for="inputNombre" class="col-sm-2 col-form-label">Nombre</label>
+                                <div class="col-sm-10">
+                                    <h:inputText value="#{cuentoView.registroLobo.nombre}" class="form-control" id="inputNombre"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="inputColor" class="col-sm-2 col-form-label">Color</label>
+                                <div class="col-sm-10">
+                                    <h:inputText value="#{cuentoView.registroLobo.color}" class="form-control" id="inputColor"/>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group row">
+                                <label for="inputPersonalidad" class="col-sm-4 col-form-label">Personalidad</label>
+                                <div class="col-sm-8">
+                                    <h:inputText value="#{cuentoView.registroLobo.personalidad}" class="form-control" id="inputPersonalidad"/>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group row">
+                                <label for="inputCasa" class="col-sm-4 col-form-label">Casa</label>
+                                <div class="col-sm-8">
+                                    <h:selectOneMenu  value="#{cuentoView.material}"  class="form-control form-control-lg">
+                                        <f:selectItems value="#{cuentoView.listaCasas}" 
+                                                       var="casaLi" 
+                                                       itemValue="#{casaLi.material}"
+                                                       itemLabel="#{casaLi.material}">                                            
+                                        </f:selectItems>
+                                    </h:selectOneMenu>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            <h:commandButton action="#{cuentoView.registrarLobo()}" class="btn btn-primary" value="Crear --> Lobo"></h:commandButton>
+                        </div>
+                    </h:form>
                 </div>
             </div>
         </div>
